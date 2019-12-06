@@ -6,14 +6,19 @@ spec:
     replicas: 1
     selector:
         matchLabels:
-          component: worker
+            component: worker
     template:
         metadata:
-          labels:
-            component: worker
+            labels:
+                component: worker
         spec:
-          containers:
-            - name: worker
-              image: mtanasiewicz/multi-worker
+            containers:
+                -   name: worker
+                    image: mtanasiewicz/multi-worker
+                    env:
+                        -   name: REDIS_HOST
+                            value: redis-cluster-ip-service
+                        -   name: REDIS_PORT
+                            value: '6379'
 
 
